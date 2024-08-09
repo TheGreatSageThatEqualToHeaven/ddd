@@ -1,3 +1,8 @@
+-- Main script content
+
+-- Retrieve the configuration
+local config = _G.config or {}
+
 -- Load necessary modules
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -11,11 +16,11 @@ local playerName = player.Name
 local playerStates = Workspace.States[playerName]
 
 -- Configuration
-local autoDodgeEnabled = true
-local detectDistance = 10
-local dodgeCooldown = 0.3
-local dodgeOnceOnDoublePunch = false
-local reactionTimes = {
+local autoDodgeEnabled = config.autoDodgeEnabled or true
+local detectDistance = config.detectDistance or 10
+local dodgeCooldown = config.dodgeCooldown or 0.3
+local dodgeOnceOnDoublePunch = config.dodgeOnceOnDoublePunch or false
+local reactionTimes = config.reactionTimes or {
     ["1 stud"] = 0.05,
     ["2 stud"] = 0.06,
     ["3 stud"] = 0.07,
@@ -23,7 +28,7 @@ local reactionTimes = {
     ["5 stud"] = 0.09,
     ["Farther"] = 0.1
 }
-local currentDirection = "Backward"
+local currentDirection = config.currentDirection or "Backward"
 
 -- State variables
 local isStunned = false
